@@ -21,3 +21,5 @@
   {:name "re-frame" :medals-data (sort #(or (> (get %1 :gold) (get %2 :gold))
                                             (and (= (get %1 :gold) (get %2 :gold))
                                                  (> (get %1 :total) (get %2 :total)))) medals-data)})
+
+;; changed
