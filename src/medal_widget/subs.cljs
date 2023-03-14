@@ -6,3 +6,8 @@
  ::name
  (fn [db]
    (:name db)))
+
+(re-frame/reg-sub
+ ::medals-data
+ (fn [db]
+   (:medals-data db)))
