@@ -1,0 +1,78 @@
+#medals {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 40%;
+  margin: auto;
+}
+
+#medals tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+#medals tr:hover {
+  background-color: #ddd;
+}
+
+#medals th {
+  padding: 12px;
+  text-align: center;
+  background-color: #04aa6d;
+  color: white;
+  border: 1px solid #ddd;
+}
+
+#medals td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+h1 {
+  color: white;
+  text-align: center;
+  text-decoration: underline;
+}
+
+span {
+  background-color: #04aa6d;
+  border: none;
+  cursor: pointer;
+}
+
+.gold-btn {
+  background-color: #ffc527;
+  border: none;
+  border-radius: 50%;
+  padding: 10px 18px;
+}
+.silver-btn {
+  background-color: #d3d3d3;
+  border: none;
+  border-radius: 50%;
+  padding: 10px 18px;
+}
+.bronze-btn {
+  background-color: #cd7f32;
+  border: none;
+  border-radius: 50%;
+  padding: 10px 18px;
+}
+
+.total-btn {
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+  font-size: 20px;
+}
+
+.medal-selected {
+  border: black 2px solid;
+  border-radius: 50%;
+  padding: 10px 18px;
+}
+
+.total-selected {
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+  font-size: 20px;
+  border-bottom: black 2px solid;
+}
