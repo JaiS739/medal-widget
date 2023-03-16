@@ -5,10 +5,18 @@
    [medal-widget.subs :as subs]
    ))
 
-(def columns ["gold" "silver" "bronze" "Total"])
+(defn table-head [sort-key]
+  [:tr
+   [:th "S.no"]
+   [:th "Country"]
+   [:th [:span.gold-btn {:class (cond (= sort-key :gold) "medal-selected") :on-click #(re-frame/dispatch [::events/sort-key :gold])}]]
+   [:th [:span.silver-btn {:class (cond (= sort-key :silver) "medal-selected") :on-click #(re-frame/dispatch [::events/sort-key :silver])}]]
+   [:th [:span.bronze-btn {:class (cond (= sort-key :bronze) "medal-selected") :on-click #(re-frame/dispatch [::events/sort-key :bronze])}]]
+   [:th [:span.total-btn {:class (cond (= sort-key :total) "total-selected") :on-click #(re-frame/dispatch [::events/sort-key :total])} "Total"]]
+   ])
 
 (defn table-body [idx {:keys [code gold silver bronze total]}]
-  [:tr {:key code} 
+  [:tr {:key idx} 
    [:td (+ idx 1)]
    [:td code]
    [:td gold]
@@ -18,26 +26,14 @@
  
 
 (defn main-panel []
-  (let [name (re-frame/subscribe [::subs/name])
-        medals-data @(re-frame/subscribe [::subs/medals-data])]
+  (let [sort-key @(re-frame/subscribe [::subs/sort-key])
+        medals-data @(re-frame/subscribe [::subs/medals-data sort-key])]
     [:div
      [:h1 "Medals Widget"]
      [:br]
      [:div
       [:table#medals
        [:thead
-        [:tr
-         [:th "S.no"]
-         [:th "Country"]
-         (map-indexed (fn [idx item]
-                        (println idx)
-                        [:th {:key item} [:button {:class (if (= item "gold")
-                                                           "gold-button"
-                                                           (if (= item "silver")
-                                                             "silver-button"
-                                                             (if (= item "bronze")
-                                                               "bronze-button"
-                                                               "total-button"))) :on-click #(re-frame/dispatch [::events/sort-it item])} (if (= item "Total") "Total" "")]]) columns)]]
+       (table-head sort-key)]
        [:tbody
-        (map-indexed (fn [idx item]
-                       [table-body idx item]) medals-data)]]]]))
+        (map-indexed table-body medals-data)]]]]))

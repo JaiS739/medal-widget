@@ -18,6 +18,4 @@
    {:code "CHN" :gold 3 :silver 4 :bronze 2 :total 9}])
 
 (def default-db
-  {:name "re-frame" :medals-data (sort #(or (> (get %1 :gold) (get %2 :gold))
-                                            (and (= (get %1 :gold) (get %2 :gold))
-                                                 (> (get %1 :total) (get %2 :total)))) medals-data)})
+  {:medals-data medals-data :sort-key :gold})
